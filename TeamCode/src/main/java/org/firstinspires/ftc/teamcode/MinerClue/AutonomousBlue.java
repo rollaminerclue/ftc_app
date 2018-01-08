@@ -53,8 +53,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Red Recognition", group="Autonomous")
-public class AutonomousRed extends LinearOpMode {
+@Autonomous(name="Blue Recognition", group="Autonomous")
+public class AutonomousBlue extends LinearOpMode {
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -113,16 +113,16 @@ public class AutonomousRed extends LinearOpMode {
             if (HSB [0] > 200 && HSB [0] < 275 && HSB [1] >= 0.6) {
                 detectBlue = true;
                 telemetry.addData("Color", "BLUE!!!");
-                rightMotorTest.setPower(-1);
-                leftMotorTest.setPower(-1);
+                rightMotorTest.setPower(1);
+                leftMotorTest.setPower(1);
                 driveForwordTime = 1.3;
 
 //               rightMotorTest.setPower(1);
             } else {
                 detectBlue = false;
                 telemetry.addData("Color", "Not Blue :(");
-                rightMotorTest.setPower(1);
-                leftMotorTest.setPower(1);
+                rightMotorTest.setPower(-1);
+                leftMotorTest.setPower(-1);
                 driveForwordTime = 0.7;
 
             }
@@ -134,8 +134,8 @@ public class AutonomousRed extends LinearOpMode {
         colorServo.setPosition(.20);
         runtime.reset();
         while (opModeIsActive()&&runtime.seconds() < 1);
-        rightMotorTest.setPower(1);
-        leftMotorTest.setPower(1);
+        rightMotorTest.setPower(-1);
+        leftMotorTest.setPower(-1);
         runtime.reset();
         while (opModeIsActive()&&runtime.seconds() < driveForwordTime);
         rightMotorTest.setPower(0);
