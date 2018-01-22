@@ -113,22 +113,33 @@ public class AutonomousRed extends LinearOpMode {
             if (HSB [0] > 200 && HSB [0] < 275 && HSB [1] >= 0.6) {
                 detectBlue = true;
                 telemetry.addData("Color", "BLUE!!!");
-                rightMotorTest.setPower(-1);
-                leftMotorTest.setPower(-1);
+                rightMotorTest.setPower(-0.5);
+                leftMotorTest.setPower(0.5);
                 driveForwordTime = 1.3;
+                runtime.reset();
+                while (opModeIsActive()&&runtime.seconds() < 0.2);
+                colorServo.setPosition(.20);
+                rightMotorTest.setPower(0.5);
+                leftMotorTest.setPower(-0.5);
+
 
 //               rightMotorTest.setPower(1);
             } else {
                 detectBlue = false;
                 telemetry.addData("Color", "Not Blue :(");
-                rightMotorTest.setPower(1);
-                leftMotorTest.setPower(1);
-                driveForwordTime = 0.7;
+                rightMotorTest.setPower( 0.5);
+                leftMotorTest.setPower(-0.5);
+                driveForwordTime = 1.3;
+                runtime.reset();
+                while (opModeIsActive()&&runtime.seconds() < 0.2);
+                colorServo.setPosition(.20);
+                rightMotorTest.setPower(-0.5);
+                leftMotorTest.setPower(0.5);
 
             }
 
         runtime.reset();
-        while (opModeIsActive()&&runtime.seconds() < 0.1);
+        while (opModeIsActive()&&runtime.seconds() < 0.2);
         rightMotorTest.setPower(0);
         leftMotorTest.setPower(0);
         colorServo.setPosition(.20);

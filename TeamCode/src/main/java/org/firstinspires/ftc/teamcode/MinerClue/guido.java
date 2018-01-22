@@ -8,6 +8,10 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 /**
  * Created by JL on 11/9/2017.
  */
+
+/**
+ * Deleted by MOSTYN on 1/22/18
+ */
 @TeleOp(name = "Guido", group = "TeleOp")
 public class guido extends LinearOpMode {
     private DcMotor rightMotor;

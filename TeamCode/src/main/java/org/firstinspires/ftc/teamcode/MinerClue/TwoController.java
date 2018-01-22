@@ -56,8 +56,8 @@ public class TwoController extends LinearOpMode {
             leftDriveMotor.setPower(-gamepad1.left_stick_y * precision);
             telemetry.addData("MotorPower", "R: " + -gamepad1.right_stick_y + " , L: " + -gamepad1.left_stick_y);
 
-            if(gamepad1.a && colorServo.getPosition() != 1.0)
-                colorServo.setPosition(1.0);
+            if(gamepad1.a )
+                colorServo.setPosition(.3);
 
             if(gamepad2.right_stick_y > 0)
                 liftMotor.setPower(1);
@@ -66,12 +66,12 @@ public class TwoController extends LinearOpMode {
             if(gamepad2.right_stick_y == 0)
                 liftMotor.setPower(0);
 
-            if(gamepad2.left_stick_y > 0)
-                liftMotor.setPower(0.3);
-            if(gamepad2.left_stick_y < 0)
-                liftMotor.setPower(-0.3);
-            if(gamepad2.left_stick_y == 0)
-                liftMotor.setPower(0);
+//            if(gamepad2.left_stick_y > 0)
+//                liftMotor.setPower(0.3);
+//            if(gamepad2.left_stick_y < 0)
+//                liftMotor.setPower(-0.3);
+//            if(gamepad2.left_stick_y == 0)
+//                liftMotor.setPower(0);
 
             if(gamepad2.right_trigger > 0)
                 clampServo.setPower(1);
@@ -80,12 +80,12 @@ public class TwoController extends LinearOpMode {
             if(gamepad2.right_trigger == 0 && gamepad2.left_trigger == 0)
                 clampServo.setPower(0);
 
-            if(gamepad2.right_bumper)
-                clampServo.setPower(0.3);
-            if(gamepad2.left_bumper)
-                clampServo.setPower(-0.3);
-            if(!gamepad2.right_bumper && !gamepad2.left_bumper)
-                clampServo.setPower(0);
+//            if(gamepad2.right_bumper)
+//                clampServo.setPower(0.3);
+//            if(gamepad2.left_bumper)
+//                clampServo.setPower(-0.3);
+//            if(!gamepad2.right_bumper && !gamepad2.left_bumper)
+//                clampServo.setPower(0);
 
 
         }
