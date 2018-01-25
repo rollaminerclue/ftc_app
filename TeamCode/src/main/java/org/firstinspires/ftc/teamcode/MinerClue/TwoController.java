@@ -73,9 +73,9 @@ public class TwoController extends LinearOpMode {
 //            if(gamepad2.left_stick_y == 0)
 //                liftMotor.setPower(0);
 
-            if(gamepad2.right_trigger > 0)
-                clampServo.setPower(1);
             if(gamepad2.left_trigger > 0)
+                clampServo.setPower(1);
+            if(gamepad2.right_trigger > 0)
                 clampServo.setPower(-1);
             if(gamepad2.right_trigger == 0 && gamepad2.left_trigger == 0)
                 clampServo.setPower(0);
