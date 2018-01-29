@@ -93,7 +93,7 @@ public class AutonomousRed extends LinearOpMode {
         sensorColorRecognition = hardwareMap.get(ColorSensor.class, "sensorColorRange");
         colorServo = hardwareMap.get(Servo.class, "colorServo");
         telemetry.addData("Blue", sensorColorRecognition.blue());
-
+        telemetry.update();
 
 
 
@@ -102,55 +102,186 @@ public class AutonomousRed extends LinearOpMode {
         runtime.reset();
         colorServo.setPosition(1);
 
-        while (opModeIsActive()&&runtime.seconds() < 2);
+        while (opModeIsActive()&&runtime.seconds() < 5)
+        {
+            Color.RGBToHSV(sensorColorRecognition.red(), sensorColorRecognition.green(), sensorColorRecognition.blue(), HSB);
+            telemetry.addData( "Saturation", HSB [1]);
+            telemetry.addData ("Hue", HSB [0]);
+            telemetry.update();
+        }
 
         // run until the end of the match (driver presses STOP)
 
 
-            Color.RGBToHSV(sensorColorRecognition.red(), sensorColorRecognition.green(), sensorColorRecognition.blue(), HSB);
-            telemetry.addData( "Saturation", HSB [1]);
-            telemetry.addData ("Hue", HSB [0]);
-            if (HSB [0] > 200 && HSB [0] < 275 && HSB [1] >= 0.6) {
-                detectBlue = true;
-                telemetry.addData("Color", "BLUE!!!");
-                rightMotorTest.setPower(-0.5);
-                leftMotorTest.setPower(0.5);
-                driveForwordTime = 1.3;
-                runtime.reset();
-                while (opModeIsActive()&&runtime.seconds() < 0.2);
-                colorServo.setPosition(.20);
-                rightMotorTest.setPower(0.5);
-                leftMotorTest.setPower(-0.5);
+        Color.RGBToHSV(sensorColorRecognition.red(), sensorColorRecognition.green(), sensorColorRecognition.blue(), HSB);
+//        telemetry.addData( "Saturation", HSB [1]);
+//        telemetry.addData ("Hue", HSB [0]);
+//        telemetry.update();
 
 
-//               rightMotorTest.setPower(1);
-            } else {
-                detectBlue = false;
-                telemetry.addData("Color", "Not Blue :(");
-                rightMotorTest.setPower( 0.5);
-                leftMotorTest.setPower(-0.5);
-                driveForwordTime = 1.3;
-                runtime.reset();
-                while (opModeIsActive()&&runtime.seconds() < 0.2);
-                colorServo.setPosition(.20);
-                rightMotorTest.setPower(-0.5);
-                leftMotorTest.setPower(0.5);
+        driveForwordTime = 1.6;
+        if (HSB [0] > 180 && HSB [0] < 275 && HSB [1] >= 0.6) {
+            detectBlue = true;
+            telemetry.addData("Color", "BLUE!!!");
+            telemetry.update();
+            rightMotorTest.setPower(0.5);
+            leftMotorTest.setPower(-0.5);
+            runtime.reset();
+            while (opModeIsActive()&&runtime.seconds() < 0.2);
+            rightMotorTest.setPower(0);
+            leftMotorTest.setPower(0);
+            colorServo.setPosition(0.20);
+            runtime.reset();
+            while (opModeIsActive()&&runtime.seconds() < 1);
+            rightMotorTest.setPower(-0.5);
+            leftMotorTest.setPower(0.5);
+            runtime.reset();
+            while (opModeIsActive()&&runtime.seconds() < 0.2);
+            rightMotorTest.setPower(0);
+            leftMotorTest.setPower(0);
+            runtime.reset();
+            while (opModeIsActive()&&runtime.seconds() < 0.5);
+        }
+        else if ((HSB [0] > 320 || HSB [0] < 20) && HSB [1] >= 0.6) {
+            telemetry.addData("Color", "RED!!!");
+            telemetry.update();
+            rightMotorTest.setPower(-0.5);
+            leftMotorTest.setPower(0.5);
+            runtime.reset();
+            while (opModeIsActive()&&runtime.seconds() < 0.2);
+            rightMotorTest.setPower(0);
+            leftMotorTest.setPower(0);
+            colorServo.setPosition(0.20);
+            runtime.reset();
+            while (opModeIsActive()&&runtime.seconds() < 1);
+            rightMotorTest.setPower(0.5);
+            leftMotorTest.setPower(-0.5);
+            runtime.reset();
+            while (opModeIsActive()&&runtime.seconds() < 0.2);
+            rightMotorTest.setPower(0);
+            leftMotorTest.setPower(0);
+            runtime.reset();
+            while (opModeIsActive()&&runtime.seconds() < 0.5);
 
-            }
 
-        runtime.reset();
-        while (opModeIsActive()&&runtime.seconds() < 0.2);
-        rightMotorTest.setPower(0);
-        leftMotorTest.setPower(0);
-        colorServo.setPosition(.20);
-        runtime.reset();
-        while (opModeIsActive()&&runtime.seconds() < 1);
+        } else {
+            colorServo.setPosition(0.20);
+            runtime.reset();
+            while (opModeIsActive()&&runtime.seconds() < 1);
+            telemetry.addData("Color", "YOU LIED TO ME!!!");
+            telemetry.update();
+
+        }
+
         rightMotorTest.setPower(1);
         leftMotorTest.setPower(1);
         runtime.reset();
         while (opModeIsActive()&&runtime.seconds() < driveForwordTime);
         rightMotorTest.setPower(0);
         leftMotorTest.setPower(0);
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 1);
+        telemetry.addData("Color", "Why did we stop?");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "We got like 22 seconds left!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "WHO PROGRAMED THIS!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "The thing I hate the most is waiting ...");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "The thing I hate the most is waiting ... it makes me want to die!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "I want to DIE!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "I want to cry in the corner!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "I ownly had 30 seconds of life and this is how they use it?!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "I WANT TO GO DIE IN A HOLE!");
+        telemetry.update();
+
+
+
+
+//        // Wait for the game to start (driver presses PLAY)
+//        waitForStart();
+//        runtime.reset();
+//        colorServo.setPosition(1);
+//
+//        while (opModeIsActive()&&runtime.seconds() < 2);
+//
+//        // run until the end of the match (driver presses STOP)
+//
+//
+//            Color.RGBToHSV(sensorColorRecognition.red(), sensorColorRecognition.green(), sensorColorRecognition.blue(), HSB);
+//            telemetry.addData( "Saturation", HSB [1]);
+//            telemetry.addData ("Hue", HSB [0]);
+//            if (HSB [0] > 200 && HSB [0] < 275 && HSB [1] >= 0.6) {
+//                detectBlue = true;
+//                telemetry.addData("Color", "BLUE!!!");
+//                rightMotorTest.setPower(-0.5);
+//                leftMotorTest.setPower(0.5);
+//                driveForwordTime = 1.3;
+//                runtime.reset();
+//                while (opModeIsActive()&&runtime.seconds() < 0.2);
+//                colorServo.setPosition(.20);
+//                rightMotorTest.setPower(0.5);
+//                leftMotorTest.setPower(-0.5);
+//
+//
+////               rightMotorTest.setPower(1);
+//            } else {
+//                detectBlue = false;
+//                telemetry.addData("Color", "Not Blue :(");
+//                rightMotorTest.setPower( 0.5);
+//                leftMotorTest.setPower(-0.5);
+//                driveForwordTime = 1.3;
+//                runtime.reset();
+//                while (opModeIsActive()&&runtime.seconds() < 0.2);
+//                colorServo.setPosition(.20);
+//                rightMotorTest.setPower(-0.5);
+//                leftMotorTest.setPower(0.5);
+//
+//            }
+//
+//        runtime.reset();
+//        while (opModeIsActive()&&runtime.seconds() < 0.2);
+//        rightMotorTest.setPower(0);
+//        leftMotorTest.setPower(0);
+//        colorServo.setPosition(.20);
+//        runtime.reset();
+//        while (opModeIsActive()&&runtime.seconds() < 1);
+//        rightMotorTest.setPower(1);
+//        leftMotorTest.setPower(1);
+//        runtime.reset();
+//        while (opModeIsActive()&&runtime.seconds() < driveForwordTime);
+//        rightMotorTest.setPower(0);
+//        leftMotorTest.setPower(0);
 
 
 //            telemetry.addData("Distance", sensorColorRange.getDistance(DistanceUnit.CM));
