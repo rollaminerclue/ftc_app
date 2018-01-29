@@ -182,6 +182,52 @@ public class AutonomousBlue extends LinearOpMode {
         leftMotorTest.setPower(0);
 
 
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 1);
+        telemetry.addData("Color", "Why did we stop?");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "We got like 22 seconds left!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "WHO PROGRAMED THIS!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "The thing I hate the most is waiting ...");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "The thing I hate the most is waiting ... it makes me want to die!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "I want to DIE!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "I want to cry in the corner!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "I ownly had 30 seconds of life and this is how they use it?!");
+        telemetry.update();
+
+        runtime.reset();
+        while (opModeIsActive()&&runtime.seconds() < 2);
+        telemetry.addData("Color", "I WANT TO GO DIE IN A HOLE!");
+        telemetry.update();
+
+
 
 
 
